@@ -27,6 +27,8 @@ CREATE TABLE Country (
   ct_name VARCHAR(45) NULL,
   ct_creed VARCHAR(45) NULL,   -- Віросповідання
   ct_attractions VARCHAR(45) NULL, -- Визначні місця
+  ct_forms_of_government VARCHAR(45) NULL,
+  ct_political_system VARCHAR(45) NULL,
   PRIMARY KEY (ct_id_country));
 -- -----------------------------------------------------
 CREATE TABLE City (
@@ -60,6 +62,7 @@ CREATE TABLE Hotels (
 -- -----------------------------------------------------
 CREATE TABLE Flights (
   f_id_flights INT NOT NULL AUTO_INCREMENT,
+  f_name VARCHAR(45) NULL,
   f_city_of_departure VARCHAR(45) NULL,
   f_date_of_departure DATE NULL,
   f_time_of_departure TIME NULL,

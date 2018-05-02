@@ -9,7 +9,7 @@ and ts_id_tours = t_id_type_of_tour
 and t_type_of_tour = 'Гірськолижні';
 
 -- 2----------------------------------------------------------------------------------------------------
-select h_id_hotels, h_name,h_price, tf_type_of_food,ci_name,ct_name,ct_creed,ct_attractions
+select h_id_hotels, h_name,h_price, tf_type_of_food,ci_name,ct_name,ct_creed,ct_attractions,ct_forms_of_government,ct_political_system
 from hotels
 Left Join type_of_food on h_id_hotels = tf_id_type_of_food
 left join city on h_id_hotels = ci_id_city
@@ -26,14 +26,14 @@ where c_id_client = (select s_id_sales from sales
 where s_count > 14);
 -- 4----------------------------------------------------------------------------------------------------
 select ts_id_tours,ts_price,p_route,p_transport,p_price_in_dollars,
-f_city_of_departure,f_date_of_departure,f_city_arrives
+f_name,f_city_of_departure,f_date_of_departure,f_city_arrives
 from tours
 inner join program on ts_id_tours = p_id_program
 inner join flights on ts_id_tours = f_id_flights
 where ts_id_tours = (select t_id_type_of_tour from type_of_tour 
 where t_id_type_of_tour = 3);
 -- 5----------------------------------------------------------------------------------------------------
-select ts_id_tours,ct_name,ci_name,t_type_of_tour
+select ts_id_tours,ct_name,ct_forms_of_government,ci_name,t_type_of_tour
 from tours
 join country on ts_id_tours = ct_id_country
 join city on ts_id_tours = ci_id_city
@@ -70,7 +70,7 @@ end
 from hotels
 join city on h_id_hotels = ci_id_city;
 -- 10---------------------------------------------------------------------------------------------------
-(select ts_id_tours,ct_name,ci_name,t_type_of_tour
+(select ts_id_tours,ct_name,ct_political_system,ci_name,t_type_of_tour
 from tours
 join country on ts_id_tours = ct_id_country
 join city on ts_id_tours = ci_id_city
@@ -79,7 +79,7 @@ where ct_id_country = (select ct_id_country
 from country
 where ct_creed = 'Буддизм'))
 union
-(select ts_id_tours,ct_name,ci_name,t_type_of_tour
+(select ts_id_tours,ct_name,ct_creed,ct_forms_of_government,ci_name,t_type_of_tour
 from tours
 join country on ts_id_tours = ct_id_country
 join city on ts_id_tours = ci_id_city
