@@ -36,8 +36,8 @@ CREATE TABLE City (
   PRIMARY KEY (ci_id_city),
     FOREIGN KEY (Country)
     REFERENCES Country (ct_id_country)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+     ON DELETE CASCADE
+    ON UPDATE CASCADE);
 -- -----------------------------------------------------
 CREATE TABLE Hotels (
   h_id_hotels INT NOT NULL AUTO_INCREMENT,
@@ -49,13 +49,13 @@ CREATE TABLE Hotels (
   PRIMARY KEY (h_id_hotels),
     FOREIGN KEY (Accommodation_type)
     REFERENCES Accommodation_type (a_id_accommodation_type)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
     
     FOREIGN KEY (City)
     REFERENCES City (ci_id_city)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
 -- -----------------------------------------------------
 CREATE TABLE Flights (
   f_id_flights INT NOT NULL AUTO_INCREMENT,
@@ -84,23 +84,23 @@ CREATE TABLE Tours (
   PRIMARY KEY (ts_id_tours),
 	FOREIGN KEY (Type_of_tour)
     REFERENCES Type_of_tour (t_id_type_of_tour)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
 
    FOREIGN KEY (Hotels)
     REFERENCES Hotels (h_id_hotels)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+	ON DELETE CASCADE
+    ON UPDATE CASCADE,
 
     FOREIGN KEY (Flights)
     REFERENCES Flights (f_id_flights)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
  
     FOREIGN KEY (Type_of_food)
     REFERENCES Type_of_food(tf_id_type_of_food)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
 -- -----------------------------------------------------
 CREATE TABLE Sales (
   s_id_sales INT NOT NULL AUTO_INCREMENT,
@@ -111,13 +111,13 @@ CREATE TABLE Sales (
   PRIMARY KEY (s_id_sales),
  FOREIGN KEY (Client)
     REFERENCES Client(c_id_client)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   
     FOREIGN KEY (Tours)
     REFERENCES Tours(ts_id_tours)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
 
 -- -----------------------------------------------------
 CREATE TABLE Program (
@@ -135,10 +135,10 @@ CREATE TABLE Tour_program (
   PRIMARY KEY (tp_id_tour_program),
     FOREIGN KEY (Program)
     REFERENCES Program(p_id_program)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   
     FOREIGN KEY (Tours)
     REFERENCES Tours (ts_id_tours)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+	ON DELETE CASCADE
+    ON UPDATE CASCADE);

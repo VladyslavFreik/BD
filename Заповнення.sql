@@ -151,9 +151,9 @@ values ('Mini all inclusive');
 insert into type_of_tour(t_type_of_tour)
 values ('Гірськолижні');
 insert into type_of_tour(t_type_of_tour)
-values (' Захоплюючи тури по Україні');
+values ('Захоплюючи тури по Україні');
 insert into type_of_tour(t_type_of_tour)
-values (' Цікаві індивідуальні тури');
+values ('Цікаві індивідуальні тури');
 insert into type_of_tour(t_type_of_tour)
 values (' Тури вихідного дня');
 
@@ -180,13 +180,13 @@ values ('asd',3,250,4,4);
 
 -- Клієнти
 insert into	client(c_surname,c_name,c_middle_name,c_Date_of_birth,c_address,c_phone)
-values('','','','2000-12-12','','');
+values('asd','asd','qwe','2000-12-12','','');
 insert into	client(c_surname,c_name,c_middle_name,c_Date_of_birth,c_address,c_phone)
-values('','','','2000-12-12','','');
+values('asds','fda','dsa','2000-12-12','','');
 insert into	client(c_surname,c_name,c_middle_name,c_Date_of_birth,c_address,c_phone)
-values('','','','2000-12-12','','');
+values('zxc','dfg','qwea','2000-12-12','','');
 insert into	client(c_surname,c_name,c_middle_name,c_Date_of_birth,c_address,c_phone)
-values('','','','2000-12-12','','');
+values('dfg','ghj','zxcbv','2000-12-12','','');
 
 -- Тури
 insert into tours(ts_star_date,ts_end_date,ts_price,Type_of_tour,Hotels,Flights,
