@@ -30,11 +30,11 @@ values('Run of house-R. O.H');
 
 -- Країна
 insert into country(ct_name,ct_creed,ct_attractions)
-values ('Німеччина','Католицизм','abc');
+values ('Німеччина','Католицизм','Бранденбурзькі ворота');
 insert into country(ct_name,ct_creed,ct_attractions)
-values ('Ангіля','Католицизм','aasc');
+values ('Ангіля','Протестанство','aasc');
 insert into country(ct_name,ct_creed,ct_attractions)
-values ('Китай','Буддизм','asd');
+values ('Китай','Буддизм','axc');
 insert into country(ct_name,ct_creed,ct_attractions)
 values ('Іспанія','Католицизм','asd');
 
@@ -56,10 +56,10 @@ f_city_arrives,f_date_arrives,f_time_arrives)
 values('asd','2000-12-12','23:59:59','','2000-12-12','23:59:59');
 insert into	flights(f_city_of_departure,f_date_of_departure,f_time_of_departure,
 f_city_arrives,f_date_arrives,f_time_arrives)
-values('asd','2000-12-12','23:59:59','','2000-12-12','23:59:59');
+values('sdf','2000-12-12','23:59:59','','2000-12-12','23:59:59');
 insert into	flights(f_city_of_departure,f_date_of_departure,f_time_of_departure,
 f_city_arrives,f_date_arrives,f_time_arrives)
-values('asd','2000-12-12','23:59:59','','2000-12-12','23:59:59');
+values('sdf','2000-12-12','23:59:59','','2000-12-12','23:59:59');
 insert into	flights(f_city_of_departure,f_date_of_departure,f_time_of_departure,
 f_city_arrives,f_date_arrives,f_time_arrives)
 values('asd','2000-12-12','23:59:59','','2000-12-12','23:59:59');
@@ -158,25 +158,43 @@ insert into type_of_tour(t_type_of_tour)
 values (' Тури вихідного дня');
 
 -- Програма
-insert into program(p_route,p_transport,p_price_in_dollars)
-values ('з-до','потяг+',100);
-insert into program(p_route,p_transport,p_price_in_dollars)
-values ('з-до','літак',1000);
-insert into program(p_route,p_transport,p_price_in_dollars)
-values ('з-до','лайнер',2000);
-insert into program(p_route,p_transport,p_price_in_dollars)
-values ('з-до','потяг',50);
+insert into program(p_type,p_route,p_transport,p_price_in_dollars)
+values ('молодіжна вечірка','з-до','автобус',100);
+insert into program(p_type,p_route,p_transport,p_price_in_dollars)
+values ('перегляд замків','з-до','потяг',1000);
+insert into program(p_type,p_route,p_transport,p_price_in_dollars)
+values ('подорожє до моря','з-до','лайнер',2000);
+insert into program(p_type,p_price_in_dollars)
+values ('масажі',50);
 
 
 -- Готелі
-insert into hotels(h_name,h_number_of_stars,h_price,Accommodation_type,City)
-values ('asd',5,1000,1,1);
-insert into hotels(h_name,h_number_of_stars,h_price,Accommodation_type,City)
-values ('asd',4,500,2,2);
-insert into hotels(h_name,h_number_of_stars,h_price,Accommodation_type,City)
-values ('asd',2,200,3,3);
-insert into hotels(h_name,h_number_of_stars,h_price,Accommodation_type,City)
-values ('asd',3,250,4,4);
+/*Apartment – апартаменти, аналог квартири, що складається з кількох кімнат і кухні;
+Balcony – з балконом;
+BDR, BDRM (bedroom) – зі спальнею;
+Business – види номерів в готелі з великою площею, комп'ютером, факсом, призначені для роботи;
+Connected rooms – суміжні кімнати, які мають між собою двері;
+De luxe – двомісний однокімнатний номер великого розміру з більш дорогою обстановкою мінімум з двох кімнат;
+Duplex – великий двоповерховий номер;
+Extra bed (або king size) – з великим двоспальним ліжком;
+Family room – сімейна кімната (більше стандартної);
+Family studio – сімейний, складається з двох кімнат;
+Honeymoon room – типи кімнат у готелях, які призначені для молодят;
+President – найшикарніші типи номерів у готелі, що складаються з декількох спальних кімнат, вітальні, кабінету, з декількома ванними кімнатами та туалетами;
+STD (standart) – стандартна кімната;
+Studio – студія (однокімнатний номер з кухнею);
+Suite – номер, що складається з вітальні та спальні;
+Suite mini (junior) – покращений;
+Superior – покращений (більшого розміру, ніж стандартний).
+*/
+insert into hotels(h_name,h_type,h_number_of_stars,h_price,Accommodation_type,City)
+values ('asd','Balcony',5,1000,1,1);
+insert into hotels(h_name,h_type,h_number_of_stars,h_price,Accommodation_type,City)
+values ('sdf','Apartment',4,500,2,2);
+insert into hotels(h_name,h_type,h_number_of_stars,h_price,Accommodation_type,City)
+values ('fgh','President',2,200,3,3);
+insert into hotels(h_name,h_type,h_number_of_stars,h_price,Accommodation_type,City)
+values ('asd','Superior',3,250,4,4);
 
 -- Клієнти
 insert into	client(c_surname,c_name,c_middle_name,c_Date_of_birth,c_address,c_phone)
@@ -191,16 +209,16 @@ values('dfg','ghj','zxcbv','2000-12-12','','');
 -- Тури
 insert into tours(ts_star_date,ts_end_date,ts_price,Type_of_tour,Hotels,Flights,
 Type_of_food)
-values ('2000-12-12','2000-12-12',1231,1,1,1,1);
+values ('2000-12-12','2000-12-12',200,1,1,1,1);
 insert into tours(ts_star_date,ts_end_date,ts_price,Type_of_tour,Hotels,Flights,
 Type_of_food)
-values ('2000-12-12','2000-12-12',1231,2,2,2,2);
+values ('2000-12-12','2000-12-12',400,2,2,2,2);
 insert into tours(ts_star_date,ts_end_date,ts_price,Type_of_tour,Hotels,Flights,
 Type_of_food)
-values ('2000-12-12','2000-12-12',1231,3,3,3,3);
+values ('2000-12-12','2000-12-12',600,3,3,3,3);
 insert into tours(ts_star_date,ts_end_date,ts_price,Type_of_tour,Hotels,Flights,
 Type_of_food)
-values ('2000-12-12','2000-12-12',1231,4,4,4,4);
+values ('2000-12-12','2000-12-12',1000,4,4,4,4);
 
 -- Продажі
 insert into sales(Client,s_count,s_date,Tours)
@@ -214,8 +232,8 @@ values (4, 12, '2000-12-12', 4);
 
 
 -- програма туру'
-insert into tour_program(Program,Tours,tp_date)
-values (1,1,'2000-12-12');
+insert into tour_program(Program,Tours,tp_date,tp_time)
+values (1,1,'2000-12-12','12:12:32');
 insert into tour_program(Program,Tours,tp_date)
 values (2,2,'2000-12-12');
 insert into tour_program(Program,Tours,tp_date)

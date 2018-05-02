@@ -42,6 +42,7 @@ CREATE TABLE City (
 CREATE TABLE Hotels (
   h_id_hotels INT NOT NULL AUTO_INCREMENT,
   h_name VARCHAR(45) NULL,
+  h_type VARCHAR(45) Null,
   h_number_of_stars INT NULL,
   h_price INT NULL,
   Accommodation_type INT NOT NULL,
@@ -122,6 +123,7 @@ CREATE TABLE Sales (
 -- -----------------------------------------------------
 CREATE TABLE Program (
   p_id_program INT NOT NULL AUTO_INCREMENT,
+  p_type VARCHAR(45) NOT NULL,
   p_route VARCHAR(45) NULL,
   p_transport VARCHAR(45) NULL,
   p_price_in_dollars INT NULL,
@@ -132,6 +134,7 @@ CREATE TABLE Tour_program (
   Program INT NOT NULL,
   Tours INT NOT NULL,
   tp_date DATE NULL,
+  tp_time TIME NULL,
   PRIMARY KEY (tp_id_tour_program),
     FOREIGN KEY (Program)
     REFERENCES Program(p_id_program)
