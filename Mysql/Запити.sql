@@ -89,10 +89,3 @@ from country
 where ct_creed = 'Протестанство'))
 order by ct_name ;
 
-
-
-
-
-
-
-
