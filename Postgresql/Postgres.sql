@@ -1,3 +1,8 @@
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO public;
+
 Start Transaction;
 Savepoint main;
 Savepoint Client1;
@@ -18,7 +23,7 @@ rollback to savepoint Client1;
 Savepoint Type_of_tour1;
 
 CREATE TABLE Type_of_tour (
-  t_id_type_of_tour Serial
+  t_id_type_of_tour Serial,
   t_type_of_tour VARCHAR(45) NOT NULL,
   PRIMARY KEY (t_id_Type_of_tour));
 
@@ -46,7 +51,7 @@ CREATE TABLE Country (
 
 rollback to savepoint Country1;
 
-Savepoint City1
+Savepoint City1;
 
 CREATE TABLE City (
   ci_id_city Serial,
