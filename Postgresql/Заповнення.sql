@@ -1,7 +1,3 @@
-DROP SCHEMA public CASCADE;
-CREATE SCHEMA public;
-GRANT ALL ON SCHEMA public TO postgres;
-GRANT ALL ON SCHEMA public TO public;
 
 Start Transaction;
 Savepoint main1;
@@ -51,7 +47,7 @@ Savepoint Flights2;
 
 insert into	flights(f_name,f_city_of_departure,f_date_of_departure,f_time_of_departure,
 f_city_arrives,f_date_arrives,f_time_arrives)
-values('Aer','asd','2000-12-12','23:59:59','','2000-12-12','23:59:59');
+values('Aer','asd','2000-12-12','23:59:59','','2000-12-18','23:59:59');
 insert into	flights(f_name,f_city_of_departure,f_date_of_departure,f_time_of_departure,
 f_city_arrives,f_date_arrives,f_time_arrives)
 values('Oer','sdf','2000-12-12','23:59:59','','2000-12-12','23:59:59');

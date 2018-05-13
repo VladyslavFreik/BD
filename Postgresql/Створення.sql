@@ -17,9 +17,7 @@ CREATE TABLE Client (
   c_phone VARCHAR(45) NULL,
   PRIMARY KEY (c_id_client));
   
-
-
-
+  
 Savepoint Type_of_tour1;
 
 CREATE TABLE Type_of_tour (
@@ -28,14 +26,12 @@ CREATE TABLE Type_of_tour (
   PRIMARY KEY (t_id_Type_of_tour));
 
 
-
 Savepoint Accommodation_type1;
 
 CREATE TABLE Accommodation_type( -- Тип розміщення
   a_id_accommodation_type Serial,
   a_accommodation_type VARCHAR(45) NOT NULL, -- Тип розміщення
   PRIMARY KEY (a_id_accommodation_type));
-
 
 
 Savepoint Country1;
@@ -50,7 +46,6 @@ CREATE TABLE Country (
   PRIMARY KEY (ct_id_country));
 
 
-
 Savepoint City1;
 
 CREATE TABLE City (
@@ -63,7 +58,6 @@ CREATE TABLE City (
      ON DELETE CASCADE
     ON UPDATE CASCADE);
     
-
 
 Savepoint Hotels1;
 
@@ -87,7 +81,6 @@ CREATE TABLE Hotels (
     ON UPDATE CASCADE);
 
 
-
 Savepoint Flights1;
 
 CREATE TABLE Flights (
@@ -102,8 +95,6 @@ CREATE TABLE Flights (
   PRIMARY KEY (f_id_flights));
 
 
-
-
 Savepoint Type_of_food1;
 
 CREATE TABLE Type_of_food (
@@ -111,9 +102,7 @@ CREATE TABLE Type_of_food (
   tf_type_of_food VARCHAR(45) NULL,
   PRIMARY KEY (tf_id_type_of_food));
   
-
-
-
+  
 Savepoint Tours1;
 
 CREATE TABLE Tours (
@@ -200,8 +189,6 @@ CREATE TABLE Tour_program (
 	ON DELETE CASCADE
     ON UPDATE CASCADE);
 
-
-
 /* 
  rollback to savepoint Client1;
  rollback to savepoint Type_of_tour1;
@@ -217,8 +204,6 @@ CREATE TABLE Tour_program (
  rollback to savepoint Tour_program1;
  rollback to savepoint main;
 */
-
-
 commit;
 select * from Sales;
 
