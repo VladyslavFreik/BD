@@ -24,7 +24,7 @@ Right Join type_of_tour on ts_id_tours = t_id_type_of_tour
 Right Join flights on ts_id_tours = f_id_flights	
 -- ---------------------------------------------------------------------------------------------------
 select p_id_program,p_type,p_route,p_transport,p_price_in_dollars,tp_date,tp_time,
-IF p_route IS NULL 
+IF p_route is NULL
 THEN
      'Дія в готелі';
 ELSE
@@ -63,40 +63,44 @@ as "Категорія"
 from tours
 join type_of_tour on ts_id_tours = t_id_type_of_tour
 join type_of_food on ts_id_tours = tf_id_type_of_food
+order by length(tf_type_of_food);
 -- -----------------------------------------------------------------------------------
-(select ts_id_tours,ct_name,ct_political_system,ci_name,t_type_of_tour
-from tours
-join country on ts_id_tours = ct_id_country
-join city on ts_id_tours = ci_id_city
-join type_of_tour on ts_id_tours = t_id_type_of_tour
-where ct_id_country = (select ct_id_country 
+(select ct_id_country,ct_name,h_name,h_type,h_number_of_stars
 from country
-where ct_creed = 'Буддизм'))
-union
-(select ts_id_tours,ct_name,ct_political_system,ci_name,t_type_of_tour
-from tours
-join country on ts_id_tours = ct_id_country
-join city on ts_id_tours = ci_id_city
-join type_of_tour on ts_id_tours = t_id_type_of_tour
-where ct_id_country = (select ct_id_country 
+ join city on ct_id_country = ci_id_city
+join hotels on ct_id_country = h_id_hotels
+where ct_id_country = (select h_id_hotels from hotels
+where h_type = 'asd' and  h_number_of_stars = 4))
+UNION
+(select ct_id_country,ct_name,h_name,h_type,h_number_of_stars
 from country
-where ct_creed = 'Протестанство'))
-order by ct_name ;
-
+ join city on ct_id_country = ci_id_city
+join hotels on ct_id_country = h_id_hotels
+where ct_id_country = (select h_id_hotels from hotels
+where h_type = 'asdad' and  h_number_of_stars = 5))
+-- -----------------------------------------------------------------------------------
+select p_id_program,p_type,p_route,p_transport,tp_date,tp_time
+from program,tour_program
+where p_id_program = tp_id_tour_program
+and tp_date = '2000-12-12' and tp_time is not null ;
+-- -----------------------------------------------------------------------------------
+select ts_id_tours,ts_star_date,ts_end_date,ts_price,tf_type_of_food,
+h_name,a_accommodation_type
+from tours
+right join hotels on ts_id_tours = h_id_hotels 
+right join type_of_food on ts_id_tours = tf_id_type_of_food
+right join accommodation_type on ts_id_tours = a_id_accommodation_type
+where ts_id_tours = ANY(select p_id_program from program 
+                    where p_route is null)
 
 
 
 -- -----------------------------------------------------------------------------------
-
-
-
-
-
--- -----------------------------------------------------------------------------------
-
-
-
-
-
-
+select c_surname, c_name, c_middle_name,s_date,tours,ts_id_tours,ts_star_date,
+ts_end_date,ts_price
+from client
+left join sales on c_id_client = s_id_sales
+left join tours on c_id_client = ts_id_tours
+where c_id_client = ALL(select s_id_sales from sales
+where s_count = 14);
 -- -----------------------------------------------------------------------------------
