@@ -95,7 +95,7 @@ values ('молодіжна вечірка','з-до','автобус',100);
 insert into program(p_type,p_route,p_transport,p_price_in_dollars)
 values ('перегляд замків','з-до','потяг',1000);
 insert into program(p_type,p_route,p_transport,p_price_in_dollars)
-values ('подорожє до моря','з-до','лайнер',2000);
+values ('подорожє до моря','з-до','лайнер',2000); 
 insert into program(p_type,p_price_in_dollars)
 values ('масаж', 400);
 insert into program(p_type,p_route,p_transport,p_price_in_dollars)

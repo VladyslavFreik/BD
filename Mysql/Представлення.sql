@@ -1,5 +1,6 @@
 USE TravelAgencies;
 -- 1----------------------------------------------------------------------------------------------------
+
 Create view info_about_client as
 select 
 	c_id_client as 'id клієнта', 
@@ -13,13 +14,13 @@ select
 	f_city_arrives 'місто прибуття',
 	f_date_arrives 'дата прибуття'
 from 
-	client
+	tours
 join 
-	flights on c_id_client = f_id_flights
+	flights on flights.f_id_flights = tours.Flights
 join 
-	sales on c_id_client = s_id_sales
+	sales on sales.Tours = tours.ts_id_tours
 join 
-	tours on c_id_client = ts_id_tours;
+	client on client.c_id_client = sales.Client;
 
 select * from info_about_client;
 
@@ -37,13 +38,15 @@ select
 from 
 	hotels
 join 
-	accommodation_type on h_id_hotels = a_id_accommodation_type
+	tours on hotels.h_id_hotels = tours.Hotels
 join 
-	type_of_food on h_id_hotels = tf_id_type_of_food
+	accommodation_type on accommodation_type.a_id_accommodation_type = hotels.Accommodation_type
+join 
+	type_of_food on type_of_food.tf_id_type_of_food = tours.Type_of_food
 join   
-	city on h_id_hotels = ci_id_city
+	city on city.ci_id_city = hotels.City
 join
-	country on h_id_hotels = ct_id_country
+	country on country.ct_id_country = city.Country
 where h_type not like 'Su%';
  
 select * from info_about_hotel; 
@@ -63,11 +66,11 @@ select
 from 
 	program
 right join 
-	tour_program on p_id_program = tp_id_tour_program
+	tour_program on program.p_id_program =  tour_program.Program
 right join
-	tours on p_id_program = ts_id_tours
+	tours on tours.ts_id_tours = tour_program.Tours
 right join
-	type_of_tour on p_id_program = t_id_type_of_tour
+	type_of_tour on type_of_tour.t_id_type_of_tour = tours.Type_of_tour
 where p_type = 'перегляд замків' or p_type = 'молодіжна вечірка';
 
 select * from info_about_tour_program;
@@ -89,12 +92,13 @@ from
 join
 	tours on f_id_flights = ts_id_tours
 join
-	type_of_tour on f_id_flights = t_id_type_of_tour
+	type_of_tour on type_of_tour.t_id_type_of_tour = tours.Type_of_tour
 where f_time_arrives - f_time_of_departure < 12;
 
 select * from info_about_flights;
 
 -- 5----------------------------------------------------------------------------------------------------
+create view country_info as
 select 
 	ct_id_country as 'id країни',
     ct_name as 'назва країни',
@@ -107,12 +111,15 @@ select
     h_number_of_stars as 'кількість зірок',
     h_type as 'тип готелю'
 from 
-	country
+	hotels
 join 
-	city on ct_id_country = ci_id_city
+	city on city.ci_id_city = hotels.City
 join 
-	hotels on ct_id_country = h_id_hotels
+	country on country.ct_id_country = city.Country
+
 where ct_forms_of_government not like 'к%';
+
+select * from  country_info;
 
 
 
