@@ -1,3 +1,4 @@
+-- -----------------------------------------------------------------------------------
 create view clients as
 select 
 	c_id_client,concat (c_surname,' ',c_name )  as "Прізвище та ім`я",age( c_date_of_birth) as "Вік", s_count * ts_price as "Загальна вартість"
@@ -14,17 +15,18 @@ order by
 
 select * from clients;
 -- -----------------------------------------------------------------------------------
-/*select c_id_client,concat (c_surname,' ',c_name )  as "Прізвище та ім`я", age( c_date_of_birth) as "Вік", s_count * ts_price as "Загальна вартість",
+select c_id_client,concat (c_surname,' ',c_name )  as "Прізвище та ім`я", age( c_date_of_birth) as "Вік", s_count * ts_price as "Загальна вартість",
 case 
-when age( c_date_of_birth) < age( '2000-12-12')  then 'Неповнолітнім особам продаж білетів не дозволений'
-when age( c_date_of_birth) > age( '2000-12-12') then 'Особа повнолітня дозвіл на купівлю білетів'
+when age( c_date_of_birth)  < age(current_date - 6574)  then 'Неповнолітнім особам продаж білетів не дозволена'
+when age( c_date_of_birth) >age(current_date - 6574) then 'Особа повнолітня дозвіл на купівлю білетів'
 end
 from 
 	client
 Join 
 	Sales on c_id_client = s_id_sales
 Join 
-	tours on c_id_client = ts_id_tours*/
+	tours on c_id_client = ts_id_tours
+order by age( c_date_of_birth) desc
 -- -----------------------------------------------------------------------------------
 create view livingPrice as
 select 
@@ -58,25 +60,21 @@ join flights on flights.f_id_flights = tours.flights
 
 select * from infoAboutAllTour;
 -- -----------------------------------------------------------------------------------
+create view statusProgram  as 
+select p_id_program,p_type,p_price_in_dollars,tp_date,tp_time,
+case 
+when tp_date < current_date then 'подія відбулася' 
+when tp_date =  current_date and tp_time between current_time and current_time  + interval '30 minutes' then 'подія починається або почалась недавно'
+when tp_date =  current_date and tp_time < current_time then 'подія закінчилася недавно або відбувається в даний момент'
+when tp_date between current_date and current_date + interval '1 day'  then 'подія відбудеться ближнім часом'
+when tp_date > current_date  then 'подія відбудеться пізніше'
+end
+as
+"Статус події"
+from program 
+right join tour_program on tour_program.program = program.p_id_program
+right join tours on tours.ts_id_tours = tour_program.tours
+where tp_date is not null;
 
-
-
-
-
-
-
-
-
+select * from statusProgram;
 -- -----------------------------------------------------------------------------------
-
-
-
-
-
-
-
--- -----------------------------------------------------------------------------------
-
-
-
-

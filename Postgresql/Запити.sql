@@ -4,15 +4,15 @@ Left join city on city.ci_id_city = hotels.city
 left join accommodation_type on hotels.accommodation_type = accommodation_type.a_id_accommodation_type
 where h_price between 200 and 450;
 -- -----------------------------------------------------------------------------------
-select c_id_client,c_surname,c_name,f_name,f_city_of_departure,f_date_of_departure
+select c_id_client,c_surname,c_name,f_name,f_city_of_departure,f_date_time_of_departure
 from tours 
 join sales on  tours.ts_id_tours = sales.tours
 join flights on flights.f_id_flights = tours.flights
 join client on client.c_id_client = sales.client
 where c_id_client = (select f_id_flights from flights 
-					 where f_name = 'Airline' and f_date_of_departure = '2018-07-24');
+					 where f_name = 'Airline' and f_date_time_of_departure = '2018-07-24');
 -- -----------------------------------------------------------------------------------
-select ts_id_tours,t_type_of_tour,f_name,f_city_of_departure,f_date_of_departure,f_city_arrives,
+select ts_id_tours,t_type_of_tour,f_name,f_city_of_departure,f_date_time_of_departure,f_city_arrives,
 case 
 when ts_price between 100 and 250 then 'low class'
 when ts_price between 250 and 500 then 'middle class'
@@ -25,7 +25,7 @@ Right Join type_of_tour on type_of_tour.t_id_type_of_tour = tours.type_of_tour
 Right Join flights on flights.f_id_flights = tours.flights;
 -- ---------------------------------------------------------------------------------------------------
 select p_id_program,p_type,p_route,p_transport,p_price_in_dollars,tp_date,tp_time,
-IF p_route is NULL
+IF p_route is NULL or p_route = 'немає'
 THEN
      'Дія в готелі';
 ELSE
@@ -35,7 +35,7 @@ END IF;
 from program
 inner join tour_program on  tour_program.program = program.p_id_program ;
 -- ---------------------------------------------------------------------------------------------------
-select f_id_flights,f_name,f_city_of_departure,f_date_of_departure,f_date_arrives,f_city_arrives
+select f_id_flights,f_name,f_city_of_departure,f_date_time_of_departure,f_date_time_arrives,f_city_arrives
 from tours 
 join sales on  tours.ts_id_tours = sales.tours
 join flights on flights.f_id_flights = tours.flights

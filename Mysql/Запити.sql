@@ -1,3 +1,4 @@
+
 USE TravelAgencies;
 
 -- id туру ціну та тип розміщення де тип туру  = гірськолижний
@@ -26,7 +27,7 @@ where c_id_client = Any(select s_id_sales from sales
 where s_count > 14);
 -- 4----------------------------------------------------------------------------------------------------
 select ts_id_tours,ts_price,p_route,p_transport,p_price_in_dollars,tp_date,
-f_name,f_city_of_departure,f_date_of_departure,f_city_arrives
+f_name,f_city_of_departure,f_date_time_of_departure,f_city_arrives
 from tour_program
 inner join program on program.p_id_program = tour_program.Program
 inner join tours on tours.ts_id_tours = tour_program.Tours

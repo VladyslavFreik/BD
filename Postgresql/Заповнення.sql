@@ -45,18 +45,14 @@ values ('Мадрид',4);
 
 Savepoint Flights2;
 
-insert into	flights(f_name,f_city_of_departure,f_date_of_departure,f_time_of_departure,
-f_city_arrives,f_date_arrives,f_time_arrives)
-values('Aer','asd','2000-12-12','23:59:59','','2000-12-18','23:59:59');
-insert into	flights(f_name,f_city_of_departure,f_date_of_departure,f_time_of_departure,
-f_city_arrives,f_date_arrives,f_time_arrives)
-values('Oer','sdf','2000-12-12','23:59:59','','2000-12-12','23:59:59');
-insert into	flights(f_name,f_city_of_departure,f_date_of_departure,f_time_of_departure,
-f_city_arrives,f_date_arrives,f_time_arrives)
-values('Incop','sdf','2000-12-12','23:59:59','','2000-12-12','23:59:59');
-insert into	flights(f_name,f_city_of_departure,f_date_of_departure,f_time_of_departure,
-f_city_arrives,f_date_arrives,f_time_arrives)
-values('Airline','asd','2000-12-12','23:59:59','','2000-12-12','23:59:59');
+insert into	flights(f_name,f_city_of_departure,f_date_time_of_departure,f_city_arrives,f_date_time_arrives)
+values('Aer','asd','2018-06-12','23:59:59','2000-12-18 23:59:59');
+insert into	flights(f_name,f_city_of_departure,f_date_time_of_departure,f_city_arrives,f_date_time_arrives)
+values('Oer','sdf','2000-12-12','23:59:59','2000-12-12 23:59:59');
+insert into	flights(f_name,f_city_of_departure,f_date_time_of_departure,f_city_arrives,f_date_time_arrives)
+values('Incop','sdf','2000-12-12','23:59:59','2000-12-12 23:59:59');
+insert into	flights(f_name,f_city_of_departure,f_date_time_of_departure,f_city_arrives,f_date_time_arrives)
+values('Airline','asd','2000-12-12','23:59:59','2000-12-12 23:59:59');
 
 
 
@@ -127,7 +123,7 @@ values ('asd','Superior',3,250,4,4);
 Savepoint Client2;
 
 insert into	client(c_surname,c_name,c_middle_name,c_Date_of_birth,c_address,c_phone)
-values('asd','asd','qwe','2000-12-12','','');
+values('asd','asd','qwe','1999-12-12','','');
 insert into	client(c_surname,c_name,c_middle_name,c_Date_of_birth,c_address,c_phone)
 values('asds','fda','dsa','2000-12-12','','');
 insert into	client(c_surname,c_name,c_middle_name,c_Date_of_birth,c_address,c_phone)
@@ -173,12 +169,12 @@ Savepoint Tour_program2;
 
 insert into tour_program(Program,Tours,tp_date,tp_time)
 values (1,1,'2000-12-12','12:12:32');
-insert into tour_program(Program,Tours,tp_date)
-values (2,2,'2000-12-12');
-insert into tour_program(Program,Tours,tp_date)
-values (3,3,'2000-12-12');
-insert into tour_program(Program,Tours,tp_date)
-values (4,4,'2000-12-12');
+insert into tour_program(Program,Tours,tp_date,tp_time)
+values (2,2,'2018-05-18','23:12:32');
+insert into tour_program(Program,Tours,tp_date,tp_time)
+values (3,3,'2018-05-22','02:12:32');
+insert into tour_program(Program,Tours,tp_date,tp_time)
+values (4,4,'2018-05-18','08:12:32');
 
 
 -- rollback to savepoint Accommodation_type2

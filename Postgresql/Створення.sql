@@ -87,11 +87,9 @@ CREATE TABLE Flights (
   f_id_flights Serial,
   f_name VARCHAR(45) NULL,
   f_city_of_departure VARCHAR(45) NULL,
-  f_date_of_departure DATE NULL,
-  f_time_of_departure TIME NULL,
+  f_date_time_of_departure TIMESTAMP NULL,
   f_city_arrives VARCHAR(45) NULL, -- Місто прильоту
-  f_date_arrives DATE NULL,
-  f_time_arrives TIME NULL,
+  f_date_time_arrives TIMESTAMP NULL,
   PRIMARY KEY (f_id_flights));
 
 

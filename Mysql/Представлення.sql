@@ -10,7 +10,7 @@ select
 	s_date as 'Дата продажу білету',
 	ts_price as 'Ціна білету',
 	f_city_of_departure as 'місто відправки',
-	f_date_of_departure as 'дата відправки',
+	 as 'дата відправки',
 	f_city_arrives 'місто прибуття',
 	f_date_arrives 'дата прибуття'
 from 
@@ -85,15 +85,14 @@ select
     t_type_of_tour as 'тип туру',
     ts_star_date as 'дата початку туру',
     ts_end_date as 'дата кінця туру',
-    f_time_arrives - f_time_of_departure as 'Час польоту',
-    f_date_arrives - f_date_of_departure as 'Днів польоту'
+    f_date_time_arrives - f_date_time_of_departure as 'Час польоту'
 from 
 	flights
 join
 	tours on f_id_flights = ts_id_tours
 join
 	type_of_tour on type_of_tour.t_id_type_of_tour = tours.Type_of_tour
-where f_time_arrives - f_time_of_departure < 12;
+where f_date_time_arrives - f_date_time_of_departure < 12;
 
 select * from info_about_flights;
 
@@ -120,16 +119,6 @@ join
 where ct_forms_of_government not like 'к%';
 
 select * from  country_info;
-
-
-
-
-
-
-
-
-
-
 
 
 

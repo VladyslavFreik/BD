@@ -31,18 +31,14 @@ insert into city(ci_name,Country)
 values ('Мадрид',4);
 
 -- Рейси
-insert into	flights(f_name,f_city_of_departure,f_date_of_departure,f_time_of_departure,
-f_city_arrives,f_date_arrives,f_time_arrives)
-values('Aer','asd','2000-12-12','23:59:59','','2000-12-12','23:59:59');
-insert into	flights(f_name,f_city_of_departure,f_date_of_departure,f_time_of_departure,
-f_city_arrives,f_date_arrives,f_time_arrives)
-values('Oer','sdf','2000-12-12','23:59:59','','2000-12-12','23:59:59');
-insert into	flights(f_name,f_city_of_departure,f_date_of_departure,f_time_of_departure,
-f_city_arrives,f_date_arrives,f_time_arrives)
-values('Incop','sdf','2000-12-12','23:59:59','','2000-12-12','23:59:59');
-insert into	flights(f_name,f_city_of_departure,f_date_of_departure,f_time_of_departure,
-f_city_arrives,f_date_arrives,f_time_arrives)
-values('Airline','asd','2000-12-12','23:59:59','','2000-12-12','23:59:59');
+insert into	flights(f_name,f_city_of_departure,f_date_time_of_departure,f_city_arrives,f_date_time_arrives)
+values('Aer','asd','2018-06-12','23:59:59','2000-12-18 23:59:59');
+insert into	flights(f_name,f_city_of_departure,f_date_time_of_departure,f_city_arrives,f_date_time_arrives)
+values('Oer','sdf','2000-12-12','23:59:59','2000-12-12 23:59:59');
+insert into	flights(f_name,f_city_of_departure,f_date_time_of_departure,f_city_arrives,f_date_time_arrives)
+values('Incop','sdf','2000-12-12','23:59:59','2000-12-12 23:59:59');
+insert into	flights(f_name,f_city_of_departure,f_date_time_of_departure,f_city_arrives,f_date_time_arrives)
+values('Airline','asd','2000-12-12','23:59:59','2000-12-12 23:59:59');
 
 -- тип харчування
 insert into type_of_food(tf_type_of_food)
