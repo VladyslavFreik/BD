@@ -10,9 +10,9 @@ select
 	s_date as 'Дата продажу білету',
 	ts_price as 'Ціна білету',
 	f_city_of_departure as 'місто відправки',
-	 as 'дата відправки',
+	f_date_time_of_departure as'дата відправки',
 	f_city_arrives 'місто прибуття',
-	f_date_arrives 'дата прибуття'
+	f_date_time_arrives as'дата прибуття'
 from 
 	tours
 join 
