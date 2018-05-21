@@ -49,3 +49,64 @@ rollback to savepoint updateTableProgram;
 rollback to savepoint deleteFromFlights;
 rollback to savepoint insertInto
 -- commit;
+-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Start Transaction;
+
+Savepoint deleteField;
+DELETE FROM tour_program 
+  WHERE tp_id_tour_program = 4 or tp_id_tour_program = 7 or tp_id_tour_program = 9 or tp_id_tour_program = 2  ;
+
+Savepoint insertField;
+
+INSERT INTO tour_program 
+(tp_id_tour_program,Program,Tours,tp_date, tp_time)
+SELECT
+     unnest(array[4, 2]),unnest(array[4, 2]),unnest(array[4, 2]), current_date - interval '1 days',  '14:30:00';
+-- unnest розгортає масив в набір рядків
+
+Savepoint updateField;
+WITH 
+updated AS (
+       UPDATE tour_program 
+	SET tp_date = current_date + interval '1 days'
+	WHERE  tp_date < current_date  
+        RETURNING tp_id_tour_program
+)
+
+
+SELECT tp_id_tour_program 
+FROM updated;
+
+-- ALTER SEQUENCE tour_program_tp_id_tour_program_seq RESTART WITH 1;
+
+select * from tour_program
+order by tp_id_tour_program  
+
+
+rollback to savepoint deleteField;
+rollback to savepoint insertField;
+rollback to savepoint updateField
+-- commit;
+-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+

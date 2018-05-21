@@ -1,7 +1,8 @@
 -- -----------------------------------------------------------------------------------
 create view clients as
 select 
-	c_id_client,concat (c_surname,' ',c_name )  as "Прізвище та ім`я",age( c_date_of_birth) as "Вік", s_count * ts_price as "Загальна вартість"
+	c_id_client	as "ID"	,
+	concat (c_surname ,' ',c_name)  as "Прізвище та ім`я",age( c_date_of_birth) as "Вік", s_count * ts_price as "Загальна вартість"
 from 
 	client
 right join 
@@ -15,6 +16,7 @@ order by
 
 select * from clients;
 -- -----------------------------------------------------------------------------------
+create view client_year as 
 select c_id_client,concat (c_surname,' ',c_name )  as "Прізвище та ім`я", age( c_date_of_birth) as "Вік", s_count * ts_price as "Загальна вартість",
 case 
 when age( c_date_of_birth)  < age(current_date - 6574)  then 'Неповнолітнім особам продаж білетів не дозволена'
@@ -26,11 +28,19 @@ Join
 	Sales on c_id_client = s_id_sales
 Join 
 	tours on c_id_client = ts_id_tours
-order by age( c_date_of_birth) desc
+order by age( c_date_of_birth) desc;
+
+select * from client_year;
 -- -----------------------------------------------------------------------------------
 create view livingPrice as
 select 
-	h_id_hotels,h_name,h_price,a_accommodation_type,tf_type_of_food,ts_star_date,ts_end_date,
+	h_id_hotels,
+	h_name as "Назва готелю",
+	h_price as "Ціна номера",
+	a_accommodation_type as "Тип розміщення",
+	tf_type_of_food as "Тип харчування",
+	ts_star_date as "Дата початку",
+	ts_end_date as "Дата кінця",
 	(ts_end_date - ts_star_date) * h_price as "загальна ціна проживання"
 from 
 	hotels
@@ -61,7 +71,11 @@ join flights on flights.f_id_flights = tours.flights
 select * from infoAboutAllTour;
 -- -----------------------------------------------------------------------------------
 create view statusProgram  as 
-select p_id_program,p_type,p_price_in_dollars,tp_date,tp_time,
+select p_id_program as "ID",
+	   p_type as "Тип програми",
+	   p_price_in_dollars as "Ціна в доларах",
+	   tp_date as "Дата початку",
+	   tp_time as "Час",
 case 
 when tp_date < current_date then 'подія відбулася' 
 when tp_date =  current_date and tp_time between current_time and current_time  + interval '30 minutes' then 'подія починається або почалась недавно'
