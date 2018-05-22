@@ -73,11 +73,83 @@ join
 	city on city.Country = country.ct_id_country
 where ci_name = end_city;
 
- 
 
 END//
 call flight_route_procedure('Львів','Дубаї');
 -- 2----------------------------------------------------------------------------------------------------
+
+DELIMITER //
+
+CREATE PROCEDURE birthday()
+
+BEGIN 
+
+
+
+ LOOP
+
+
+
+IF _end THEN LEAVE wet;
+
+END IF;
+END LOOP ;
+
+CLOSE curf;
+
+
+END // 
+
+
+CALL birthday() //
+
+SELECT * FROM birth//
+
+
+drop procedure sales_in_time;
+
+delimiter //
+create procedure sales_in_time (in date1 date, in date2 date) 
+begin
+select c_surname, c_name,s_count,ts_price,s_date,
+h_name,h_price  from client
+inner join sales on sales.Client = client.c_id_client
+inner join tours on tours.ts_id_tours = sales.tours
+inner join hotels on hotels.h_id_hotels = tours.Hotels
+where s_date between date1 and date2;
+end //
+
+call sales_in_time('2018-05-13','2018-05-24');
+
+
+
+drop procedure sale;
+
+delimiter //
+create procedure sale ()
+begin
+select c_surname,c_name,s_count,s_date,ts_price,
+case 
+when ts_price * s_count > 2000 and ts_price * s_count < 5000 then 'Скидка 25% на наступний квиток' 
+when ts_price * s_count >= 5000 and ts_price * s_count < 10000  then 'Скидка 35% на наступний квиток'
+when ts_price * s_count >= 10000 then 'Скидка 50% на наступний квиток'
+else 'Скидки немає'
+end
+as 'Скидка'
+from client 
+Left join sales on client.c_id_client = sales.Client
+Left join tours on tours.ts_id_tours = sales.Tours;
+end //
+
+call sale();
+
+
+
+
+
+
+
+
 
 
 

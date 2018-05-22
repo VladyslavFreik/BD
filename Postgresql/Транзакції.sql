@@ -24,15 +24,17 @@ DECLARE
 	b INT;
 BEGIN
 	i = 1;
-	b = (select 10 - count(f_id_flights) from flights );
+	b = (select 15 - count(f_id_flights) from flights );
                
 while i <= b
+
+
 loop
 		insert into	flights(f_name,f_city_of_departure,f_date_time_of_departure,f_city_arrives,f_date_time_arrives)
-values (('[0:9]={Silk Way Airlines,Emirates Airline,Air VIA,AirBaltic,UMAir,Travel Service,Finnair,Air China ,Hainan Airlines ,Air Koryo}'::text[])[trunc(random()*10)]	, 
-		('[0:9]={Київ,Львів,Харків,Івано-Франківськ,Варшава,Вроцлав,Прага,Лісабон,Каталонія,Крим}'::text[])[trunc(random()*10)],
+values (('[0:8]={LOT,Flydubai Airline,Air Yanair,Belavia,UMAir,Wizz Air,Finnair,Air China}'::text[])[trunc(random()*9)]	, 
+		('[0:8]={Київ,Львів,Харків,Івано-Франківськ,Луцьк,Житомир,Донецьк,Волинь,Крим}'::text[])[trunc(random()*9)],
 		timestamptz '2018-05-23  00:00:01' + random() * (timestamptz '2018-05-23 00:00:01' - timestamptz '2018-05-25 03:14:07') ,
-		('[0:9]={Мадрид,Париж,Карибські острови,Нью-Йорк,Шанхай,Токіо,Санта-Крус-де-Тенерифе,Берлін,Рим,Ріо де жанейро}'::text[])[trunc(random()*10)],
+		('[0:9]={Мадрид,Париж,Карибські острови,Нью-Йорк,Шанхай,Дубаї,Оттава,Берлін,Катманду,Ріо де жанейро}'::text[])[trunc(random()*10)],
 		 timestamptz '2018-05-25 00:00:01' + random() * (timestamptz '2018-05-25 00:00:01' - timestamptz '2018-05-27 03:14:07')) ;
 		 i = i + 1;
 	END LOOP;
@@ -61,7 +63,7 @@ Savepoint insertField;
 INSERT INTO tour_program 
 (tp_id_tour_program,Program,Tours,tp_date, tp_time)
 SELECT
-     unnest(array[4, 2]),unnest(array[4, 2]),unnest(array[4, 2]), current_date - interval '1 days',  '14:30:00';
+     unnest(array[4,7,9,2]),unnest(array[4,7,9,2]),unnest(array[4,7,9,2]), current_date - interval '1 days',  '14:30:00';
 -- unnest розгортає масив в набір рядків
 
 Savepoint updateField;
@@ -72,7 +74,6 @@ updated AS (
 	WHERE  tp_date < current_date  
         RETURNING tp_id_tour_program
 )
-
 
 SELECT tp_id_tour_program 
 FROM updated;
