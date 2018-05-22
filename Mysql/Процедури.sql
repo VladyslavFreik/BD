@@ -13,7 +13,7 @@ Create table flight_route(
 drop procedure flight_route_procedure;
 
 DELIMITER //
-CREATE PROCEDURE flight_route_procedure(start_city varchar(30),end_city varchar(30))
+CREATE PROCEDURE flight_route_procedure(start_city varchar(70),end_city varchar(70))
 BEGIN
 Declare  id int(6);
 Declare  copy_name varchar(30);
@@ -21,8 +21,8 @@ Declare  copy_city_of_departure varchar(30);
 Declare  copy_date_time_of_departure datetime; 
 Declare  copy_city_arrives varchar(30);
 Declare  copy_date_time_arrives datetime;
-declare a varchar(50);
-declare b varchar(50);
+declare a varchar(70);
+declare b varchar(500);
 
 
 DECLARE done integer default 0;
@@ -58,7 +58,7 @@ DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET done=1;
     
  set a =   (select concat(f_copy_city_of_departure,' - ',f_copy_city_arrives) as 'Маршрут'
         from  flight_route
-		where f_copy_city_of_departure = start_city and  f_copy_city_arrives = end_city);
+		where f_copy_city_of_departure = start_city and  f_copy_city_arrives = end_city limit 1);
         
  set b =   (select GROUP_CONCAT(f_copy_city_of_departure,' - ',f_copy_city_arrives)  as 'Маршрути додаткові'
         from  flight_route
@@ -76,7 +76,7 @@ where ci_name = end_city;
  
 
 END//
-call flight_route_procedure('Київ','Берлін');
+call flight_route_procedure('Львів','Дубаї');
 -- 2----------------------------------------------------------------------------------------------------
 
 

@@ -77,7 +77,9 @@ select * from info_about_tour_program;
 
 -- 4----------------------------------------------------------------------------------------------------
 create view info_about_flights as
+
 select 
+
 	f_id_flights as 'id авіарейсу',
     f_name as 'назва авіарейсу',
     f_city_of_departure as 'місто відправки',
@@ -85,14 +87,17 @@ select
     t_type_of_tour as 'тип туру',
     ts_star_date as 'дата початку туру',
     ts_end_date as 'дата кінця туру',
-    f_date_time_arrives - f_date_time_of_departure as 'Час польоту'
+    -- (day(f_date_time_arrives) - day(f_date_time_of_departure))   as 'Час польоту'
+    TIME_TO_SEC(f_date_time_arrives) - TIME_TO_SEC(f_date_time_of_departure) as 'Різниця секунд',
+	SEC_TO_TIME(TIME_TO_SEC(f_date_time_arrives) - TIME_TO_SEC(f_date_time_of_departure)) AS 'Час польоту'
+
 from 
 	flights
 join
 	tours on f_id_flights = ts_id_tours
 join
 	type_of_tour on type_of_tour.t_id_type_of_tour = tours.Type_of_tour
-where f_date_time_arrives - f_date_time_of_departure < 12;
+where f_date_time_arrives - f_date_time_of_departure  ;
 
 select * from info_about_flights;
 

@@ -15,7 +15,7 @@ Left Join type_of_food on type_of_food.tf_id_type_of_food =  tours.Type_of_food
 left join hotels on hotels.h_id_hotels = tours.Hotels 
 left join city on city.ci_id_city = hotels.City
 left join country on city.Country = country.ct_id_country
-where h_number_of_stars > 3;
+where h_number_of_stars > 4;
 
 -- 3---------------------------------------------------------------------------------------------------- 
 select c_surname, c_name, c_middle_name,s_date,tours,ts_id_tours,ts_star_date,
@@ -32,8 +32,8 @@ from tour_program
 inner join program on program.p_id_program = tour_program.Program
 inner join tours on tours.ts_id_tours = tour_program.Tours
 inner join flights on flights.f_id_flights = tours.Flights
-where ts_id_tours = (select t_id_type_of_tour from type_of_tour 
-where t_id_type_of_tour = 3);
+where ts_id_tours = any(select t_id_type_of_tour from type_of_tour 
+where t_id_type_of_tour = 3 or t_id_type_of_tour = 14 );
 -- 5----------------------------------------------------------------------------------------------------
 select ts_id_tours,ct_name,ct_forms_of_government,ci_name,t_type_of_tour
 from tours
@@ -41,9 +41,9 @@ join hotels on hotels.h_id_hotels = tours.Hotels
 join city on city.ci_id_city = hotels.City
 join country on country.ct_id_country = city.Country
 join type_of_tour on type_of_tour.t_id_type_of_tour = tours.Type_of_tour
-where ct_id_country = (select ct_id_country 
+where ct_id_country = any(select ct_id_country 
 from country
-where ct_attractions = 'Бранденбурзькі ворота'); 
+where ct_attractions = 'Бранденбурзькі ворота' or ct_attractions = 'Анапурна' ); 
 -- -6---------------------------------------------------------------------------------------------------
 select t_type_of_tour,ts_price,h_name,h_number_of_stars
 from tours
@@ -65,9 +65,9 @@ join city on city.ci_id_city = hotels.City;
 
 select h_name,h_type,h_number_of_stars,h_price,ci_name,
 case 
-when h_price between 100 and 250 then 'малобюджетні'
+when h_price between 1 and 250 then 'малобюджетні'
 when h_price between 250 and 500 then 'середньобюджетні'
-when h_price between 500 and 1100  then 'високобюджетні'
+when h_price > 500  then 'високобюджетні'
 end
  as `Категорія`
 from hotels
@@ -79,9 +79,9 @@ join hotels on hotels.h_id_hotels = tours.Hotels
 join city on city.ci_id_city = hotels.City
 join country on country.ct_id_country = city.Country
 join type_of_tour on type_of_tour.t_id_type_of_tour = tours.Type_of_tour
-where ct_id_country = (select ct_id_country 
+where ct_id_country = Any(select ct_id_country 
 from country
-where ct_creed = 'Буддизм'))
+where ct_creed = 'Христианство'))
 union
 (select ts_id_tours,ct_name,ct_political_system,ci_name,t_type_of_tour
 from tours

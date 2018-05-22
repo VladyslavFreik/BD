@@ -51,8 +51,8 @@ left join
 left join 
 	type_of_food on tours.type_of_food = type_of_food.tf_id_type_of_food
 
-where h_name like 'a%' and h_id_hotels = ALL(select tf_id_type_of_food  from type_of_food 
-									  where tf_type_of_food  like 'C%');
+where h_name like 'R%' and h_id_hotels = ANY(select tf_id_type_of_food  from type_of_food 
+									  where tf_type_of_food  like 'U%');
 
 select *from livingPrice;
 -- -----------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ join type_of_tour on type_of_tour.t_id_type_of_tour = tours.type_of_tour
 join hotels on hotels.h_id_hotels = tours.hotels
 join city on city.ci_id_city = hotels.city
 join country on country.ct_id_country = city.country
-join flights on flights.f_id_flights = tours.flights
+join flights on flights.f_id_flights = tours.flights;
 
 select * from infoAboutAllTour;
 -- -----------------------------------------------------------------------------------

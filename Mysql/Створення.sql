@@ -46,7 +46,7 @@ CREATE TABLE Hotels (
   h_name VARCHAR(45) NULL,
   h_type VARCHAR(45) Null,
   h_number_of_stars INT NULL,
-  h_price decimal NULL,
+  h_price DECIMAL(6,2) NULL,
   Accommodation_type INT NOT NULL,
   City INT NOT NULL,
   PRIMARY KEY (h_id_hotels),
@@ -78,7 +78,7 @@ CREATE TABLE Tours (
   ts_id_tours INT NOT NULL AUTO_INCREMENT,
   ts_star_date DATE NULL,
   ts_end_date DATE NULL,
-  ts_price decimal NULL,
+  ts_price DECIMAL(6,2) NULL,
   Type_of_tour INT NOT NULL,
   Hotels INT NOT NULL,
   Flights INT NOT NULL,
@@ -127,7 +127,7 @@ CREATE TABLE Program (
   p_type VARCHAR(45) NOT NULL,
   p_route VARCHAR(45) NULL,
   p_transport VARCHAR(45) NULL,
-  p_price_in_dollars decimal NULL,
+  p_price_in_dollars DECIMAL(6,2) NULL,
   PRIMARY KEY (p_id_program));
 -- -----------------------------------------------------
 CREATE TABLE Tour_program (
